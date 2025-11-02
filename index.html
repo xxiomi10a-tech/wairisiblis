@@ -1,0 +1,285 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>INJECKTOR GACOR — TN. GHOSTIAN</title>
+  <meta name="description" content="Payment page mobile-first with hacking theme.">
+  <style>
+    /* Mobile-first, modern "hacking" theme */
+    :root{
+      --bg:#07080a;
+      --panel:#0f1720;
+      --accent:#00ff88;
+      --muted:#9aa4ad;
+      --glass: rgba(255,255,255,0.03);
+      --danger:#ff4d6d;
+      --radius:14px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 400px at 10% 10%, rgba(0,255,136,0.03), transparent 8%),
+                  radial-gradient(1000px 300px at 90% 90%, rgba(0,200,255,0.02), transparent 10%),
+                  linear-gradient(180deg, #020205 0%, #071019 100%);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:12px;
+      min-height:100vh;
+      background-attachment:fixed;
+      overflow-y:auto;
+    }/* Watermark / background title */
+.watermark{
+  position:fixed;
+  top:10px;left:8px;
+  font-weight:800;
+  color:rgba(0,255,136,0.03);
+  font-size:46px;
+  letter-spacing:4px;
+  transform:rotate(-12deg);
+  pointer-events:none;
+  user-select:none;
+}
+
+.container{
+  width:100%;
+  max-width:520px;
+  backdrop-filter: blur(8px) saturate(110%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.012));
+  border-radius:18px;
+  padding:18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  border:1px solid rgba(0,255,136,0.04);
+}
+
+header{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.logo{
+  width:56px;height:56px;border-radius:12px;
+  background:linear-gradient(135deg,#00110a,#003322);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-weight:900;font-size:18px;
+  box-shadow: 0 6px 18px rgba(0,255,136,0.06);
+}
+.title{
+  line-height:1;
+}
+.title h1{margin:0;font-size:18px;color:#e6fff0;letter-spacing:0.6px}
+.title p{margin:0;font-size:12px;color:var(--muted)}
+
+/* main panel */
+.panel{background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02)); padding:14px; border-radius:12px;}
+
+.balance{
+  display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:10px;background:var(--glass);margin-bottom:12px;border:1px dashed rgba(0,255,136,0.03)
+}
+.balance .left{font-size:12px;color:var(--muted)}
+.balance .right{font-weight:700;color:#dfffe6;font-size:14px}
+
+.payments{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.method{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);}
+.method h3{margin:0;font-size:13px;color:var(--accent)}
+.method p{margin:8px 0 0 0;font-size:13px;color:#e6fff0;font-weight:700}
+.copy{display:inline-block;margin-top:8px;font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(0,255,136,0.04);cursor:pointer}
+
+/* QRIS placeholder */
+.qris{display:flex;gap:10px;align-items:center;padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.12));border:1px solid rgba(0,255,136,0.04);margin-bottom:12px}
+.qris .box{width:84px;height:84px;border-radius:8px;background:linear-gradient(180deg,#0a0a0a,#121212);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px}
+.qris .desc{font-size:13px}
+
+/* upload proof */
+.uploader{margin-top:6px}
+.file-wrap{display:flex;gap:8px;align-items:center}
+.file-info{flex:1;padding:8px;border-radius:10px;background:rgba(255,255,255,0.02);font-size:13px}
+input[type=file]{display:none}
+.btn{display:inline-block;padding:10px 12px;border-radius:10px;font-weight:700;text-align:center;min-width:120px}
+.btn.primary{background:linear-gradient(90deg,#002b18,#00371f);color:var(--accent);border:1px solid rgba(0,255,136,0.06)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+/* link sites */
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.link-item{flex:1;min-width:140px;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);text-align:center}
+.link-item a{display:block;color:var(--accent);text-decoration:none;font-weight:800}
+
+footer{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
+
+/* small devices tweaks */
+@media (max-width:420px){
+  .payments{grid-template-columns:1fr}
+  .watermark{font-size:36px}
+  body{padding:12px}
+}
+
+/* subtle scanline / hacker effect */
+.scanline:before{
+  content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(255,255,255,0.02) 40%, rgba(0,0,0,0));mix-blend-mode:overlay;pointer-events:none;border-radius:inherit}
+
+/* small helper */
+.muted{color:var(--muted);font-size:12px}
+
+  </style>
+</head>
+<body>
+  <div class="watermark">TN. GHOSTIAN</div>
+  <div class="container" role="main">
+    <header>
+      <div class="logo">TG</div>
+      <div class="title">
+        <h1>INJECKTOR GACOR</h1>
+        <p>Halaman Pembayaran — Tema: HACKING</p>
+      </div>
+    </header><section class="panel scanline">
+  <div class="balance">
+    <div class="left">Pilih Metode Pembayaran</div>
+    <div class="right">Pastikan bukti transfer sesuai</div>
+  </div>
+
+  <div class="payments">
+    <div class="method">
+      <h3>DANA</h3>
+      <p id="dana-number">087729167770</p>
+      <div class="copy" data-number="087729167770">Salin Nomor</div>
+    </div>
+
+    <div class="method">
+      <h3>OVO</h3>
+      <p id="ovo-number">087729167770</p>
+      <div class="copy" data-number="087729167770">Salin Nomor</div>
+    </div>
+
+    <div class="method">
+      <h3>GOPAY</h3>
+      <p id="gopay-number">087729167770</p>
+      <div class="copy" data-number="087729167770">Salin Nomor</div>
+    </div>
+
+    <div class="method">
+      <h3>QRIS</h3>
+      <p class="muted">Scan QR untuk bayar (ganti dengan QRIS asli)</p>
+      <div class="copy" style="margin-top:8px">Tampilkan QR</div>
+    </div>
+  </div>
+
+  <div class="qris" aria-hidden>
+    <div class="box">QRIS<br>PLACEHOLDER</div>
+    <div class="desc">
+      <div style="font-weight:800;color:#eafff0">QRIS (Ganti gambar)</div>
+      <div class="muted">Taruh QRIS resmi di sebelah kiri untuk pembayaran cepat</div>
+    </div>
+  </div>
+
+  <div class="uploader">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-weight:800;color:#dfffe6">Impor Bukti Transfer</div>
+      <div style="font-size:12px;color:var(--muted)">jpg, png, pdf (maks 10MB)</div>
+    </div>
+    <div class="file-wrap">
+      <label class="btn primary" for="proof">Pilih / Unggah</label>
+      <div class="file-info" id="file-info">Belum ada file diunggah</div>
+      <input type="file" id="proof" accept="image/*,.pdf">
+    </div>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn ghost" id="preview-btn" disabled>Lihat</button>
+      <button class="btn primary" id="submit-btn" disabled>Kirim Bukti</button>
+    </div>
+  </div>
+
+  <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
+
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <div style="flex:1">
+      <div style="font-weight:800;color:#dfffe6;margin-bottom:6px">Link Situs</div>
+      <div class="links">
+        <div class="link-item"><a href="https://868992.xyz" target="_blank" rel="noopener noreferrer">Buka Situs Resmi</a></div>
+        <div class="link-item"><a href="https://868992.xyz" target="_blank" rel="noopener noreferrer">Link Alternatif</a></div>
+      </div>
+    </div>
+
+    <div style="min-width:120px">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Tindakan Cepat</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn primary" id="copy-all">Salin Semua Nomor</button>
+        <button class="btn ghost" id="open-link">Buka Situs</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>© TN. GHOSTIAN — INJECKTOR GACOR</div>
+  </footer>
+</section>
+
+  </div>  <script>
+    // copy to clipboard handlers
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const number = btn.dataset.number || btn.previousElementSibling?.textContent?.trim();
+        if (!number) return;
+        try{
+          await navigator.clipboard.writeText(number);
+          btn.textContent = 'Tersalin!';
+          setTimeout(()=> btn.textContent = 'Salin Nomor',1200);
+        }catch(e){
+          alert('Gagal menyalin. Tekan dan tahan nomor untuk salin.');
+        }
+      })
+    });
+
+    // file upload preview + enable buttons
+    const proof = document.getElementById('proof');
+    const fileInfo = document.getElementById('file-info');
+    const previewBtn = document.getElementById('preview-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    let uploadedFile = null;
+
+    proof.addEventListener('change', (e)=>{
+      const f = e.target.files[0];
+      if (!f) { fileInfo.textContent = 'Belum ada file diunggah'; previewBtn.disabled = true; submitBtn.disabled = true; uploadedFile = null; return; }
+      if (f.size > 10 * 1024 * 1024){ fileInfo.textContent = 'File terlalu besar (>10MB)'; previewBtn.disabled = true; submitBtn.disabled = true; uploadedFile = null; return; }
+      uploadedFile = f;
+      fileInfo.textContent = f.name + ' • ' + Math.round(f.size/1024) + ' KB';
+      previewBtn.disabled = false; submitBtn.disabled = false;
+    });
+
+    previewBtn.addEventListener('click', ()=>{
+      if (!uploadedFile) return;
+      const url = URL.createObjectURL(uploadedFile);
+      // open image/pdf in new tab for quick preview
+      window.open(url, '_blank');
+    });
+
+    submitBtn.addEventListener('click', ()=>{
+      if (!uploadedFile) return alert('Pilih file dulu');
+      // This is a demo: real implementation should upload to your server endpoint.
+      alert('Contoh: file "'+uploadedFile.name+'" siap dikirim ke server Anda. (Demo)');
+    });
+
+    // quick actions
+    document.getElementById('copy-all').addEventListener('click', async ()=>{
+      const all = [document.getElementById('dana-number').textContent.trim(), document.getElementById('ovo-number').textContent.trim(), document.getElementById('gopay-number').textContent.trim()].join(' | ');
+      try{ await navigator.clipboard.writeText(all); alert('Semua nomor tersalin:\n'+all); }catch(e){ alert('Tidak bisa menyalin otomatis.'); }
+    });
+    document.getElementById('open-link').addEventListener('click', ()=>{
+      window.open('https://868992.xyz','_blank');
+    });
+
+    // small progressive enhancement: tap numbers to copy on mobile
+    document.querySelectorAll('#dana-number,#ovo-number,#gopay-number').forEach(el=>{
+      el.addEventListener('click', async ()=>{
+        try{ await navigator.clipboard.writeText(el.textContent.trim()); el.style.opacity=0.7; setTimeout(()=>el.style.opacity=1,700);}catch(e){ }
+      })
+    });
+  </script></body>
+</html>
